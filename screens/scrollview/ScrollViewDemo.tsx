@@ -2,7 +2,7 @@ import React from "react";
 import { Image, Text, View, StyleSheet, SafeAreaView, ScrollView, Dimensions } from "react-native";
 
 const { height } = Dimensions.get('window'); // Get the screen height
-const scrollViewDemo = () => {
+const ScrollViewDemo = () => {
     const headingHeight = 60;
     const headingHeightWrap = 120;
     return(
@@ -12,22 +12,22 @@ const scrollViewDemo = () => {
                         <Text style={styles.heading}> Demo Scroll View</Text>
                 </View>
             </View>
-            <ScrollView style={{backgroundColor: 'red', borderBottomWidth: 10, borderBottomColor: 'black'}}  style={{ height: height - headingHeightWrap }}>
+            <ScrollView style={{height: height - headingHeightWrap }}>
                 <View style={styles.item}>
                     <Text>1 Block Title </Text>
-                    <Image style={styles.img} source={require('../assets/images/hero.jpeg')} />
+                    <Image style={styles.img} source={require('../../assets/images/hero.jpeg')} />
                 </View>
                 <View style={styles.item}>
                     <Text>2 Block Title </Text>
-                    <Image style={styles.img} source={require('../assets/images/hero.jpeg')} />
+                    <Image style={styles.img} source={require('../../assets/images/hero.jpeg')} />
                 </View>
                 <View style={styles.item}>
                     <Text>3 Block Title </Text>
-                    <Image style={styles.img} source={require('../assets/images/hero.jpeg')} />
+                    <Image style={styles.img} source={require('../../assets/images/hero.jpeg')} />
                 </View>
                 <View style={styles.item}>
                     <Text>4 Block Title </Text>
-                    <Image style={styles.img} source={require('../assets/images/hero.jpeg')} />
+                    <Image style={styles.img} source={require('../../assets/images/hero.jpeg')} />
                 </View>
             
             </ScrollView>
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default scrollViewDemo;
+export default ScrollViewDemo;
