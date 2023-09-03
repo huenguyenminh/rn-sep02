@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/Baskerville-01.ttf",
+      "sha1": "f751cd447914f58d3c8cba4bd82f06b815479825"
+    },
+    {
+      "path": "assets/fonts/Baskerville-SemiBold-05.ttf",
+      "sha1": "5ce9aeaa3e0fec4f6d00848925d97a871bdef013"
+    },
+    {
+      "path": "assets/fonts/ProximaNova-Medium.ttf",
+      "sha1": "c835bc0266bd1adbd38cfe8bcfcb663460b666f9"
+    },
+    {
+      "path": "assets/fonts/ProximaNova-Regular.ttf",
+      "sha1": "d559dd2da61668e858e74565ff37ae82e923c6f5"
+    }
+  ]
+}
