@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, View, StyleSheet, YellowBox } from "react-native";
+import { Image, Text, View, StyleSheet } from "react-native";
 const Header = () => {
     return (
        <View style={styles.container}>

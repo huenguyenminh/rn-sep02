@@ -1,12 +1,15 @@
 import { Button, Image, StyleSheet, View, Text } from 'react-native';
 import HomeScreen from './screens/home/HomeScreen';
 import LoginScreen from './screens/login/LoginScreen';
+import ScrollViewDemo from './screens/scrollViewDemo';
 const App = () => {
     return (
       <>
         <View>
+          <ScrollViewDemo/>
           {/* <HomeScreen/> */}
-          <LoginScreen/>
+          {/* <LoginScreen/> */}
+         
         </View>
       </>
     )
