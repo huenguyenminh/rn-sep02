@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import HeadingBlock from "../components/HeadingBlock";
 const ListProducts = () => {
@@ -13,6 +13,21 @@ const ListProducts = () => {
         {id: 8, name : '8 Product Title'},
         {id: 9, name : '9 Product Title'},
     ];
+
+    // call api
+    const [pe, setPe] = useState([]);
+    const getApi = () => {
+        return fetch('https://64f5d9812b07270f705dcaab.mockapi.io/pe')
+            .then(response => response.json())
+            .then((data) => setPe(data))
+            .catch(err => console.log(err))
+    }
+
+    useState(() => {
+        getApi();
+    });
+
+
     return(
         <>
             <View style={[styles.container, styles.product_list]}>
@@ -21,12 +36,12 @@ const ListProducts = () => {
                 </View>
                 <FlatList 
                     scrollEnabled={false} 
-                    data={listProducts} 
+                    data={pe} 
                     numColumns= {2}
                     columnWrapperStyle={styles.row}
-                    renderItem={({item}) =>(
+                    renderItem={({item}: any) =>(
                     <View style={styles.cate_item}>
-                        <Image style={styles.cate_img} source={require('../../assets/images/cate-1.jpg')}/>
+                        <Image style={{width: '100%', height: 100}} source={{uri: item.avatar}}/>
                         <Text style={styles.product_title}>{item.name}</Text>
                        
                         {item.sale ? (
