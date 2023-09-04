@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { View, Text, StyleSheet, Image, FlatList } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList, ActivityIndicatorBase, ActivityIndicator } from "react-native";
 import HeadingBlock from "../components/HeadingBlock";
+import Skelaton from "../components/Skelaton";
 const ListProducts = () => {
     const listProducts = [
         {id: 1, name : '1 Product Title'},
@@ -16,11 +17,26 @@ const ListProducts = () => {
 
     // call api
     const [pe, setPe] = useState([]);
-    const getApi = () => {
-        return fetch('https://64f5d9812b07270f705dcaab.mockapi.io/pe')
-            .then(response => response.json())
-            .then((data) => setPe(data))
-            .catch(err => console.log(err))
+    const [isLoad, setIsLoad] = useState(true);
+    // const getApi = () => {
+    //     return fetch('https://64f5d9812b07270f705dcaab.mockapi.io/pe')
+    //         .then(response => response.json())
+    //         .then((data) => setPe(data))
+    //         .catch(err => console.log(err))
+    // }
+
+    const getApi = async () => {
+       try{
+            const response = await fetch('https://64f5d9812b07270f705dcaab.mockapi.io/pe');
+            const data = await response.json();
+            setPe(data);
+       } catch (error){
+            console.log('====================================');
+            console.log(error);
+            console.log('====================================');
+       } finally {
+            setIsLoad(false)
+       }
     }
 
     useState(() => {
@@ -34,27 +50,28 @@ const ListProducts = () => {
                 <View style={styles.cate_header}>
                     <HeadingBlock title="Products"></HeadingBlock>
                 </View>
-                <FlatList 
-                    scrollEnabled={false} 
-                    data={pe} 
-                    numColumns= {2}
-                    columnWrapperStyle={styles.row}
-                    renderItem={({item}: any) =>(
-                    <View style={styles.cate_item}>
-                        <Image style={{width: '100%', height: 100}} source={{uri: item.avatar}}/>
-                        <Text style={styles.product_title}>{item.name}</Text>
+                {isLoad ? (<Skelaton/>) : (
+                   <FlatList 
+                   scrollEnabled={false} 
+                   data={pe} 
+                   numColumns= {2}
+                   columnWrapperStyle={styles.row}
+                   renderItem={({item}: any) =>
+                       <View style={styles.cate_item}>
+                           <Image style={{width: '100%', height: 100}} source={{uri: item.avatar}}/>
+                           <Text style={styles.product_title}>{item.name}</Text>
                        
-                        {item.sale ? (
-                            <View style={styles.tag}>
-                            <Text style={styles.sale}>{item.sale}</Text>
-                            </View>
-                        ) : null}
-                    </View>
+                           {item.sale ? (
+                               <View style={styles.tag}>
+                                   <Text style={styles.sale}>{item.sale}</Text>
+                               </View>
+                           ) : null}
+                       </View>
+                   }
+               />
                 )}
-                />
                 
-               
-               
+                
             </View>
         </>
     )
