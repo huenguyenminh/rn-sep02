@@ -1,34 +1,44 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image, FlatList } from "react-native";
 import HeadingBlock from "../components/HeadingBlock";
 const ListProducts = () => {
+    const listProducts = [
+        {id: 1, name : '1 Product Title'},
+        {id: 2, name : '2 Product Title', sale: '-30%'},
+        {id: 3, name : '3 Product Title', sale: '-30%'},
+        {id: 4, name : '4 Product Title'},
+        {id: 5, name : '5 Product Title'},
+        {id: 6, name : '6 Product Title'},
+        {id: 7, name : '7 Product Title'},
+        {id: 8, name : '8 Product Title'},
+        {id: 9, name : '9 Product Title'},
+    ];
     return(
         <>
             <View style={[styles.container, styles.product_list]}>
                 <View style={styles.cate_header}>
                     <HeadingBlock title="Products"></HeadingBlock>
                 </View>
-                <View style={styles.cate_body}>
+                <FlatList 
+                    scrollEnabled={false} 
+                    data={listProducts} 
+                    numColumns= {2}
+                    columnWrapperStyle={styles.row}
+                    renderItem={({item}) =>(
                     <View style={styles.cate_item}>
                         <Image style={styles.cate_img} source={require('../../assets/images/cate-1.jpg')}/>
-                        <Text style={styles.product_title}>Product Title</Text>
-                        <View style={styles.tag}>
-                            <Text style={styles.sale}>-30%</Text>
-                        </View>
+                        <Text style={styles.product_title}>{item.name}</Text>
+                       
+                        {item.sale ? (
+                            <View style={styles.tag}>
+                            <Text style={styles.sale}>{item.sale}</Text>
+                            </View>
+                        ) : null}
                     </View>
-                    <View style={styles.cate_item}>
-                        <Image style={styles.cate_img} source={require('../../assets/images/cate-2.jpg')}/>
-                        <Text style={styles.product_title}>Product Title</Text>
-                    </View>
-                    <View style={styles.cate_item}>
-                        <Image style={styles.cate_img} source={require('../../assets/images/cate-3.jpg')}/>
-                        <Text style={styles.product_title}>Product Title</Text>
-                    </View>
-                    <View style={styles.cate_item}>
-                        <Image style={styles.cate_img} source={require('../../assets/images/cate-4.jpg')}/>
-                        <Text style={styles.product_title}>Product Title</Text>
-                    </View>
-                </View>
+                )}
+                />
+                
+               
                
             </View>
         </>
@@ -36,6 +46,11 @@ const ListProducts = () => {
 };
 
 const styles = StyleSheet.create({
+    row: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between'
+    },
     product_list: {
         marginTop: 0
     },
